@@ -1,5 +1,7 @@
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import './About.css'
 
 const About = () => {
@@ -8,11 +10,24 @@ const About = () => {
     threshold: 0.1
   })
 
+  const developerCode = `const aboutMe = {
+  name: 'Octavio Michel HOUNYE',
+  title: 'Fullstack Web Developer',
+  location: 'Cotonou, BENIN',
+  email: 'octaviohounye123@gmail.com',
+  passion: 'Creating beautiful, functional websites',
+  completedProjects: '12+',
+  technologies: ['React', 'Node.js', 'PHP', 'Laravel', 'MongoDB'],
+  getContact: function() {
+    return this.email;
+  }
+};`
+
   return (
     <section id="about" className="about">
       <div className="container about-container" ref={ref}>
-        <motion.h2 
-          className="section-title" 
+        <motion.h2
+          className="section-title"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
@@ -20,55 +35,50 @@ const About = () => {
           About Me
         </motion.h2>
         <div className="about-content">
-          <motion.div 
+          <motion.div
             className="about-image"
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <img 
-              src="/images/WhatsApp Image 2025-05-05 at 12.40.45 (4).jpeg" 
-              alt="Octavio Michel HOUNYE" 
+            <img
+              src="/images/WhatsApp Image 2025-05-05 at 12.40.45 (4).jpeg"
+              alt="Octavio Michel HOUNYE"
             />
           </motion.div>
-          <motion.div 
+          <motion.div
             className="about-text"
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <p className="about-description">
-              A skilled full-stack web developer with expertise in creating beautiful, functional websites. With years of experience, I've developed a passion for turning ideas into reality through code. I specialize in modern web technologies and strive to deliver exceptional user experiences.
-            </p>
-            
-            <div className="about-details">
-              <div className="detail-item">
-                <h5>Name:</h5>
-                <p>Octavio Michel HOUNYE</p>
+            <div className="terminal-window">
+              <div className="terminal-window-header">
+                <div className="terminal-buttons">
+                  <div className="btn-close"></div>
+                  <div className="btn-min"></div>
+                  <div className="btn-max"></div>
+                </div>
+                <div className="terminal-title">about.js</div>
               </div>
-              <div className="detail-item">
-                <h5>Date of Birth:</h5>
-                <p>September 29, 2004</p>
-              </div>
-              <div className="detail-item">
-                <h5>Address:</h5>
-                <p>Djidjé, Cotonou, BENIN</p>
-              </div>
-              <div className="detail-item">
-                <h5>Email:</h5>
-                <p>octaviohounye123@gmail.com</p>
-              </div>
-              <div className="detail-item">
-                <h5>Phone:</h5>
-                <p>+229-01-559-942-36</p>
-              </div>
-              <div className="detail-item">
-                <h5>Projects Completed:</h5>
-                <p className="text-primary">12+</p>
+              <div className="terminal-window-body">
+                <SyntaxHighlighter
+                  language="javascript"
+                  style={atomDark}
+                  customStyle={{
+                    margin: 0,
+                    padding: '1.5rem',
+                    background: 'transparent',
+                    fontSize: '0.9rem',
+                    borderRadius: '0 0 8px 8px'
+                  }}
+                >
+                  {developerCode}
+                </SyntaxHighlighter>
               </div>
             </div>
-            
-            <a href="/Cv/CV professionnel gris simple-1 (1).pdf" className="btn btn-primary" download>
+
+            <a href="/Cv/CV professionnel gris simple-1 (1).pdf" className="btn btn-primary mt-4 hover-target" download style={{ marginTop: '2rem' }}>
               Download CV
             </a>
           </motion.div>

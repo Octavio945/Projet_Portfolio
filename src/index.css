@@ -8,6 +8,7 @@
   --card-bg: #1E1E1E;
   --section-spacing: 100px;
   --transition: all 0.3s ease;
+  cursor: none;
 }
 
 * {
@@ -26,6 +27,7 @@ body {
   background-color: var(--dark-bg);
   color: var(--light-text);
   overflow-x: hidden;
+  cursor: none;
 }
 
 a {
@@ -54,7 +56,12 @@ section {
   padding: var(--section-spacing) 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
   line-height: 1.2;
 }
@@ -111,7 +118,7 @@ h1, h2, h3, h4, h5, h6 {
   :root {
     --section-spacing: 80px;
   }
-  
+
   .section-title {
     font-size: 2.2rem;
   }
@@ -121,7 +128,7 @@ h1, h2, h3, h4, h5, h6 {
   :root {
     --section-spacing: 60px;
   }
-  
+
   .section-title {
     font-size: 2rem;
   }
@@ -131,11 +138,11 @@ h1, h2, h3, h4, h5, h6 {
   :root {
     --section-spacing: 50px;
   }
-  
+
   .section-title {
     font-size: 1.8rem;
   }
-  
+
   .btn {
     padding: 10px 25px;
   }

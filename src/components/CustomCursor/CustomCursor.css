@@ -1,0 +1,38 @@
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  border: 2px solid var(--color-primary); /* Assuming a CSS variable exists */
+  transition: transform 0.15s ease-out, background-color 0.15s ease-out;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Hide cursor on smaller screens */
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.custom-cursor.hovering {
+  transform: translate(-50%, -50%) scale(1.5);
+  background-color: rgba(var(--color-primary-rgb), 0.1); /* Semi-transparent background if applicable */
+}
+
+/* Add a smaller dot inside */
+.custom-cursor::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+}
+
+.custom-cursor.hovering::after {
+  display: none;
+}

@@ -1,14 +1,14 @@
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
-import { 
+import {
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs,
   FaGithub, FaBootstrap, FaAws, FaPhp, FaDatabase,
   FaGitAlt
 } from 'react-icons/fa'
-import { 
+import {
   SiTailwindcss, SiMysql, SiMongodb, SiFirebase,
-  SiExpress, SiTypescript, SiVuedotjs, SiAngular, SiAdobe,SiLaravel,
-  SiHeroku, SiPostgresql,SiRender, SiVercel, SiFigma, SiCanva
+  SiExpress, SiTypescript, SiVuedotjs, SiAngular, SiAdobe, SiLaravel,
+  SiHeroku, SiPostgresql, SiRender, SiVercel, SiFigma, SiCanva
 } from 'react-icons/si'
 import './Skills.css'
 import { title } from 'framer-motion/client'
@@ -36,14 +36,14 @@ const Skills = () => {
     { id: 14, name: 'Firebase', icon: <SiFirebase />, color: '#FFCA28' },
     { id: 15, name: 'PHP', icon: <FaPhp />, color: '#777BB4' },
     { id: 16, name: 'Adobe', icon: <SiAdobe />, color: '#FF0000' },
-    { id: 17, name: 'Laravel', icon: <SiLaravel />, color: '#FF2D20'},
-    { id: 18, name: 'Heroku', icon: <SiHeroku />, color: '#430098'},
-    { id: 19, name: 'PostgreSQL', icon: <SiPostgresql />, color: '#336791'},
-    { id: 20, name: 'Git', icon: <FaGitAlt />, color: '#F05032'},
-    { id: 21, name: 'Render', icon: <SiRender />, color: '#46E3B7'},
-    { id: 22, name: 'Vercel', icon: <SiVercel />, color: '#000000'},
-    {id: 23,name: 'Figma',icon: <SiFigma />,color: '#F24E1E'},
-    { id: 24, name: 'Canva', icon: <SiCanva />, color: '#00C4CC'},
+    { id: 17, name: 'Laravel', icon: <SiLaravel />, color: '#FF2D20' },
+    { id: 18, name: 'Heroku', icon: <SiHeroku />, color: '#430098' },
+    { id: 19, name: 'PostgreSQL', icon: <SiPostgresql />, color: '#336791' },
+    { id: 20, name: 'Git', icon: <FaGitAlt />, color: '#F05032' },
+    { id: 21, name: 'Render', icon: <SiRender />, color: '#46E3B7' },
+    { id: 22, name: 'Vercel', icon: <SiVercel />, color: '#000000' },
+    { id: 23, name: 'Figma', icon: <SiFigma />, color: '#F24E1E' },
+    { id: 24, name: 'Canva', icon: <SiCanva />, color: '#00C4CC' },
   ]
 
   const containerVariants = {
@@ -57,12 +57,25 @@ const Skills = () => {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
         duration: 0.4
+      }
+    }
+  }
+
+  // Floating animation for the icons themselves
+  const iconFloatVariants = {
+    animate: {
+      y: [0, -10, 0],
+      transition: {
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: Math.random() * 2 // random delay so they don't all float together
       }
     }
   }
@@ -70,7 +83,7 @@ const Skills = () => {
   return (
     <section id="skills" className="skills">
       <div className="container" ref={ref}>
-        <motion.h2 
+        <motion.h2
           className="section-title"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -79,7 +92,7 @@ const Skills = () => {
           My Skills
         </motion.h2>
 
-        <motion.p 
+        <motion.p
           className="skills-subtitle"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
@@ -87,22 +100,29 @@ const Skills = () => {
         >
           Over 1 year of hands-on experience in web development, design, and creative projects — delivering real-world solutions and constantly learning.
         </motion.p>
-        
-        <motion.div 
+
+        <motion.div
           className="skills-grid"
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
           {skills.map(skill => (
-            <motion.div 
-              key={skill.id} 
-              className="skill-item"
+            <motion.div
+              key={skill.id}
+              className="skill-item hover-target"
               variants={itemVariants}
             >
-              <div className="skill-icon" style={{ color: skill.color }} title={skill.name}>
+              <motion.div
+                className="skill-icon"
+                style={{ color: skill.color }}
+                title={skill.name}
+                variants={iconFloatVariants}
+                animate="animate"
+                whileHover={{ scale: 1.2, rotate: 10 }}
+              >
                 {skill.icon}
-              </div>
+              </motion.div>
               <p className="skill-name">{skill.name}</p>
             </motion.div>
           ))}
